@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI 拖动（Draggable） - 默认功能</title>
+  <link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1.custom/jquery-ui.min.css">
+  <script src="jquery.min.js"></script>
+  <script src="jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+  <style>
+  .bs{ width: 100px; height: 100px; padding: 0.5em; float: left;border-radius: 50%;background: #0BF7E2;}
+  #big,#small{ width: 250px; height: 250px; padding: 0.5em; float: left;border-radius: 50%;text-align: center;}
+  #small{
+    width: 200px;
+    height: 200px;
+  }
+  .result{
+    width: 200px;
+    height: 50px;
+    position: relative;
+    left: 50%;
+    top: 60%;
+    font-size: 30px;
+    transform: translate(-50%,50%);
+    text-align: center;
+    /*color: red;*/
+  }
+  </style>
+  <script>
+  $(function() {
+    var win=0;
+    var times=0;
+    var flag1=true;
+    var flag2=true;
+    $( ".bs" ).draggable();
+    $('#big').droppable({
+      activeClass:"ui-state-default",
+      hoverClass:"ui-state-hover",
+      drop:function(event,ui){
+        $(this).css('background-color','rgb('+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+')');
+        if (flag1) {
+          var num=Math.ceil(Math.random()*6);  
+          if (num>3) {
+            win++;
+          } 
+          times++;
+          if (times==2) {
+            flag1=false;
+            if(win==2) {
+              $('.result').text('You win!');
+              $('.result').css('color','rgb('+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+')');
+            } else {
+              $('.result').text('You lose!');
+              $('.result').css('color','rgb('+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+')');
+            }
+          }
+          
+        }
+      },
+      out:function (event,ui) {
+        flag1=true;
+        if (times>0) {
+          times--;
+        }
+        if(win>0){
+          win--;
+        }
+      }
+    });
+    $('#small').droppable({
+      activeClass:"ui-state-default",
+      hoverClass:"ui-state-hover",
+      drop:function(event,ui){
+        $(this).css('background-color','rgb('+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+')');
+        if (flag2) {
+          var num=Math.ceil(Math.random()*6);  
+          if (num<=3) {
+            win++;
+          } 
+          times++;
+          if (times==2) {
+            flag2=false;
+            if(win==2) {
+              $('.result').text('You win!');
+              $('.result').css('color','rgb('+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+')');
+            } else {
+              $('.result').text('You lose!');
+              $('.result').css('color','rgb('+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+')');
+            }
+          }
+        }
+      },
+      out:function (event,ui) {
+        flag2=true;
+        if (times>0) {
+          times--;
+        }
+        if (win>0) {
+          win--;
+        }
+      }
+    });   
+  });
+  </script>
+</head>
+<body>
+ 
+
+<div class="bs">
+  
+</div> 
+<div class="bs">
+ 
+</div>
+
+<div class="ui-widget-header" id="big">
+  <p>买大</p>
+</div>
+<div class="ui-widget-header" id="small">
+  <p>买小</p>
+</div> 
+<div class="result">
+  
+</div>
+</body>
+</html>
