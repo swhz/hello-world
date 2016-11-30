@@ -58,12 +58,12 @@
       },
       out:function (event,ui) {
         flag1=true;
-        if (times>0) {
-          times--;
+        if (times==2) {
+          times=0;
           console.log('+++'+times);
-        }
-        if(win>0){
-          win--;
+          if(win>0){
+            win--;
+          }
         }
       }
     });
@@ -93,12 +93,12 @@
       },
       out:function (event,ui) {
         flag2=true;
-        if (times>0) {
-          times--;
+        if (times==2) {
+          times=0;
           console.log('+++'+times);
-        }
-        if (win>0) {
-          win--;
+          if (win>0) {
+            win--;
+          }
         }
       }
     });   
