@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI 拖动（Draggable） - 默认功能</title>
+  <!-- <link rel="stylesheet" href="http://apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css"> -->
+  <link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1.custom/jquery-ui.min.css">
+  <script src="jquery.min.js"></script>
+  <script src="jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+  <!-- <script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script> -->
+  <!-- <script src="http://apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script> -->
+  <style>
+  #red,#yellow,#blue { width: 100px; height: 100px; padding: 0.5em; float: left;border-radius: 50%;text-align: center;}
+  #red{background-color: red;}
+  #yellow{background-color: yellow;}
+  #blue{background-color: blue;}
+  #droppablered,#droppableyellow,#droppableblue { width: 200px; height: 200px; padding: 0.5em; float: left;border-radius: 50%;text-align: center;}
+  .score{
+    width: 100px;
+    height: 30px;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,50%);
+    text-align: center;
+    color: red;
+  }
+  </style>
+  <script>
+  $(function() {
+    var score=0;
+    var flag1=true;
+    var flag2=true;
+    var flag3=true;
+    $( "#red,#yellow,#blue" ).draggable();
+    $('#droppablered').droppable({
+      drop:function(event,ui){
+        var str=ui.draggable.text();
+        if (flag1) {
+          if(/red/.test(str)){
+            score+=1;
+            $('.score').text('得分：'+score);
+            flag1=false;
+          } else {
+            score-=1;
+            $('.score').text('得分：'+score);
+          }
+          if(score==3){
+            alert('You win!');
+          }
+        }
+      },
+      out:function (event,ui) {
+        var str=ui.draggable.text();
+        if(/red/.test(str)){
+          score-=1;
+          flag1=true;
+          $('.score').text('得分：'+score);
+        } 
+      },
+      
+    });
+      $('#droppableyellow').droppable({
+      drop:function(event,ui){
+        var str=ui.draggable.text();
+        if (flag2) {
+          if(/yellow/.test(str)){
+            score+=1;
+            $('.score').text('得分：'+score);
+            flag2=false;
+          } else {
+            score-=1;
+            $('.score').text('得分：'+score);
+          }
+          if(score==3){
+            alert('You win!');
+          }
+        }
+      },
+      out:function (event,ui) {
+        var str=ui.draggable.text();
+        if(/yellow/.test(str)){
+          score-=1;
+          flag2=true;
+          $('.score').text('得分：'+score);
+        } 
+      }
+    });
+    $('#droppableblue').droppable({
+      drop:function(event,ui){
+        var str=ui.draggable.text();
+        if (flag3) {
+          if(/blue/.test(str)){
+            score+=1;
+            $('.score').text('得分：'+score);
+            flag3=false;
+          } else {
+            score-=1;
+            $('.score').text('得分：'+score);
+          }
+          if(score==3){
+            alert('You win!');
+          }
+        }
+      },
+      out:function (event,ui) {
+        var str=ui.draggable.text();
+        if(/blue/.test(str)){
+          score-=1;
+          flag3=true;
+          $('.score').text('得分：'+score);
+        } 
+      }
+    });
+  });
+  </script>
+</head>
+<body>
+ 
+
+<div id="red">
+  <p>red</p>
+</div> 
+<div id="yellow">
+  <p>yellow</p>
+</div>
+<div id="blue">
+  <p>blue</p>
+</div>
+<div class="ui-widget-header" id="droppablered">
+  <p>红色</p>
+</div>
+<div class="ui-widget-header" id="droppableyellow">
+  <p>黄色</p>
+</div>
+<div class="ui-widget-header" id="droppableblue">
+  <p>蓝色</p>
+</div> 
+<div class="score">
+  得分：0
+</div>
+</body>
+</html>
