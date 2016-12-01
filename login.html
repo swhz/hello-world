@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        form{
+            width: 300px;
+            margin: 20px auto;
+            color: greenyellow;
+        }
+        p{
+            width: 300px;
+            margin: 10px auto;
+            /*text-align: center;*/
+        }
+    </style>
+</head>
+<body>
+    <form method="GET" action="login.php">
+        用户名：<input type="text" name="username" placeholder="请输入用户名" id="name"><br>
+        密　码：<input type="password" name="userpwd" placeholder="请输入密码" id="pwd">
+        <input type="submit" value="登录" id="btn">
+    </form>
+    <form action="">
+        输入姓名：<input type="text" id="txt">
+    </form>
+    <p>提示信息：<span id="info"></span></p>
+    <script>
+        document.getElementById("btn").onclick=function(e) {
+            e=e||window.event;
+            if(e.preventDefault()){
+                e.preventDefault();
+            } else {
+                e.returnValue=false;
+            }
+            var xhr=new XMLHttpRequest();
+            xhr.open("GET","login.php?username="+document.getElementById("name").value+
+            "&userpwd="+document.getElementById("pwd").value);
+            xhr.send();
+            xhr.onreadystatechange=function() {
+                if(xhr.readyState==4) {
+                    if(xhr.status==200) {
+                        alert(xhr.responseText);
+                    } else {
+                        alert("发生错误："+xhr.status);
+                    }
+                }
+            }
+
+        }
+        document.getElementById("txt").onkeyup=function(){
+            var str=this.value;
+            if(str.length==0) {
+                document.getElementById("info").innerHTML="";
+                return;
+            }
+            var xhr=new XMLHttpRequest();
+            xhr.open("GET","nameinfo.php?q="+str);
+            xhr.send();
+            xhr.onreadystatechange=function() {
+                if(xhr.readyState==4) {
+                    if(xhr.status==200) {
+                        document.getElementById("info").innerHTML=xhr.responseText;
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
