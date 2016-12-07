@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.bootcss.com/jquery-mobile/1.4.5/jquery.mobile.min.css">
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-mobile/1.4.5/jquery.mobile.min.js"></script>
+</head>
+<body>
+
+<body>
+
+<div data-role="page" id="pageone">
+  <div data-role="main" class="ui-content">
+    <!--<h2>包含缩略图和文本的列表</h2>-->
+    <ul data-role="listview" data-inset="true" id="list">
+      <!--<li>
+        <a href="#">
+        <img src="http://www.runoob.com/try/demo_source/chrome.png">
+        <h2>Google Chrome</h2>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+        <img src="http://www.runoob.com/try/demo_source/firefox.png">
+        <h2>Mozilla Firefox</h2>
+        </a>
+      </li>-->
+    </ul>
+  </div>
+</div>
+<script>
+    $(function(){
+        var url='http://api.ruicaiedu.cn/app.php/Index/newsLists/p/1/type_id/1';
+        $.getJSON(url,function(data,status){
+            var data=data.retRes.data;
+            $.each(data,function(index,item){
+                var str='<li><a href="#">';
+                str+='<img src="http://api.ruicaiedu.cn/'+item.file_url+'">';
+                str+='<h2>'+item.title+'</h2>';
+                str+='</a></li>';
+                $("#list").append(str);
+            })
+        $("#list").listview('refresh');
+
+        })
+
+    })
+</script>
+</body>
+</html>
