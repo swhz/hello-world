@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.bootcss.com/jquery-mobile/1.4.5/jquery.mobile.min.css">
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-mobile/1.4.5/jquery.mobile.min.js"></script>
+</head>
+<body>
+
+<div data-role="page" id="pageone">
+  <div data-role="panel" id="myPanel" data-dismissible="false"> 
+    <h2>面板头部</h2>
+    <p>面板设置了 data-dismissible 属性为 "false", 意味着不能通过点击面板外部区域来关闭，你可以使用按下 Esc 键或向左滑动来关闭。</p>
+  </div> 
+
+  <div data-role="header">
+    <h1>页面头部</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+    <p>点击下面按钮打开面板。</p>
+    <a href="#myPanel" class="ui-btn ui-btn-inline ui-corner-all ui-shadow">打开面板</a>
+  </div>
+
+  <div data-role="footer">
+    <h1>页面底部</h1>
+  </div> 
+</div>
+
+</body>
+</html>
