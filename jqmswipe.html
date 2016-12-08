@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.bootcss.com/jquery-mobile/1.4.5/jquery.mobile.min.css">
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-mobile/1.4.5/jquery.mobile.min.js"></script>
+<script>
+$(document).on("pagecreate","#pageone",function(){
+    $('#pageone').on('swipeleft',function(){
+        $(this).css('background-color','blue');
+    });
+    $('#pageone').on('swiperight',function(){
+        $(this).css('background-color','yellow');
+    });                    
+});
+</script>
+</head>
+<body>
+
+<div data-role="page" id="pageone">
+  <div data-role="header">
+    <h1>swipeleft 事件</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+    <p>滑动改变背景色</p>
+  </div>
+
+  <div data-role="footer">
+    <h1>页脚文本</h1>
+  </div>
+</div> 
+
+</body>
+</html>
