@@ -5,13 +5,31 @@
 <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-mobile/1.4.5/jquery.mobile.min.css">
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery-mobile/1.4.5/jquery.mobile.min.js"></script>
+<style>
+    .imageshow{
+        position: relative;
+        width:300px;
+        overflow: hidden;
+        height: 200px;
+        margin: 100px auto;
+    }
+    .imagebox{
+        position: absolute;
+        width: 1500px;
+        height: 100%;
+    }
+    .imagebox img{
+        width: 300px;
+        height: 100%;
+    }
+</style>
 <script>
 $(document).on("pagecreate","#pageone",function(){
-    $('#pageone').on('swipeleft',function(){
-        $(this).css('background-color','blue');
+    $('.imagebox').on('swipeleft',function(){
+        $(this).css('left',$(this).css('left')+300+'px');
     });
-    $('#pageone').on('swiperight',function(){
-        $(this).css('background-color','yellow');
+    $('.imagebox').on('swiperight',function(){
+        $(this).css('left',$(this).css('left')-300+'px');
     });                    
 });
 </script>
@@ -24,7 +42,15 @@ $(document).on("pagecreate","#pageone",function(){
   </div>
 
   <div data-role="main" class="ui-content">
-    <p>滑动改变背景色</p>
+    <div class="imageshow">
+        <div class="imagebox">
+            <img src="images/1.jpg" alt="">
+            <img src="images/2.jpg" alt="">
+            <img src="images/3.jpg" alt="">
+            <img src="images/4.jpg" alt="">
+            <img src="images/5.jpg" alt="">
+        </div>
+    </div>  
   </div>
 
   <div data-role="footer" data-position="fixed">
