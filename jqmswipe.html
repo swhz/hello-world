@@ -29,20 +29,33 @@
 </style>
 <script>
 $(document).on("pagecreate","#pageone",function(){
+    var move=0;
     $('.imagebox').on('swipeleft',function(){
-        if($(this).css('left')=='-1200px') {
-            $(this).css('left','0px');
+        if(move==-1200) {
+            move=0;
         } else {
-            $(this).css('left','-=300px');
+            move-=300;
         }
+        $(this).css('transform','translateX('+move+'px)');
+        // if($(this).css('left')=='-1200px') {
+        //     $(this).css('left','0px');
+        // } else {
+        //     $(this).css('left','-=300px');
+        // }
     });
     $('.imagebox').on('swiperight',function(){
-        console.log($(this).css('left'));
-        if($(this).css('left')=='0px') {
-            $(this).css('left','-1200px')
+        if(move==0) {
+            move=-1200
         } else {
-            $(this).css('left','+=300px');
+            move+=300;
         }
+        $(this).css('transform','translateX('+move+'px)');
+        // console.log($(this).css('left'));
+        // if($(this).css('left')=='0px') {
+        //     $(this).css('left','-1200px')
+        // } else {
+        //     $(this).css('left','+=300px');
+        // }
     });                    
 });
 </script>
