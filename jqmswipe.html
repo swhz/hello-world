@@ -26,10 +26,10 @@
 <script>
 $(document).on("pagecreate","#pageone",function(){
     $('.imagebox').on('swipeleft',function(){
-        $(this).css('left',$(this).css('left')+300+'px');
+        $(this).css('left','-=300px');
     });
     $('.imagebox').on('swiperight',function(){
-        $(this).css('left',$(this).css('left')-300+'px');
+        $(this).css('left','+=300px');
     });                    
 });
 </script>
