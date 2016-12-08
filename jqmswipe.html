@@ -17,19 +17,31 @@
         position: absolute;
         width: 1500px;
         height: 100%;
+        white-space: nowrap;
+        left: 0px;
     }
     .imagebox img{
         width: 300px;
+        margin: 0;
         height: 100%;
     }
 </style>
 <script>
 $(document).on("pagecreate","#pageone",function(){
     $('.imagebox').on('swipeleft',function(){
-        $(this).css('left','-=300px');
+        if($(this).css('left')=='-1200px') {
+            $(this).css('left','0px');
+        } else {
+            $(this).css('left','-=300px');
+        }
     });
     $('.imagebox').on('swiperight',function(){
-        $(this).css('left','+=300px');
+        console.log($(this).css('left'));
+        if($(this).css('left')=='0px') {
+            $(this).css('left','-1200px')
+        } else {
+            $(this).css('left','+=300px');
+        }
     });                    
 });
 </script>
