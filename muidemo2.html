@@ -47,7 +47,7 @@
 			<span class="mui-badge mui-badge-danger">4</span>
 			<span class="mui-badge mui-badge-royal">5</span>
 		</div>
-		<div mui-content>
+		<div class="mui-content loading">
 			<button type="button" class="mui-btn mui-btn-primary">蓝色</button>
 			<span class="mui-btn mui-btn-success">绿色</span>
 			<a href="#" class="mui-btn mui-btn-warning">黄色</a>
@@ -111,12 +111,12 @@
 			mui.init({
             swipeBack: true //启用右滑关闭功能
         });
-        // mui(document.body).on('tap', '.mui-btn', function(e) {
-        //     mui(this).button('loading');
-        //     setTimeout(function() {
-        //         mui(this).button('reset');
-        //     }.bind(this), 2000);
-        // });
+        mui('.loading').on('tap', '.mui-btn', function(e) {
+            mui(this).button('loading');
+            setTimeout(function() {
+                mui(this).button('reset');
+            }.bind(this), 2000);
+        });
         mui('.demo1').on('change','input',function () {
         	var value=this.checked?"true":"false";
         	this.previousElementSibling.innerText="checked: "+value;
