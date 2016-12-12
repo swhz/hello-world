@@ -125,8 +125,8 @@
         	var str='';
         	mui('.interesting input').each(function () {
         		// var value=this.checked?this.value:"";
-        		var value=this.checked?this.previousElementSibling.innerText:"";
-        		str+=value+" ";
+        		var value=this.checked?this.previousElementSibling.innerText+" ":"";
+        		str+=value;
         	});
         	alert("你的兴趣爱好是："+str);
         })
