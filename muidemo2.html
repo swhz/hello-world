@@ -105,6 +105,13 @@
 					<button type="button" class="mui-btn mui-btn-primary" id="choice">选择</button>
 				</h5>
 			</div>
+			<div class="mui-content">
+				<div class="mui-content-padded" style="margin:5px;text-align:center;">
+					<button type="button" class="mui-btn mui-btn-blue mui-btn-outlined" id="confirmbtn">确认消息框</button>
+					<button type="button" class="mui-btn mui-btn-blue mui-btn-outlined" id="promptbtn">输入对话框</button>
+					<div id="info"></div>
+				</div>
+			</div>
 		</div>
 		<script src="examples/hello-mui/js/mui.min.js"></script>
 		<script type="text/javascript">
@@ -121,7 +128,7 @@
         	var value=this.checked?"true":"false";
         	this.previousElementSibling.innerText="checked: "+value;
         });
-        mui('.mui-content-padded').on('tap','button',function () {
+        mui('.mui-content-padded').on('tap','#choice',function () {
         	var str='';
         	mui('.interesting input').each(function () {
         		// var value=this.checked?this.value:"";
@@ -129,8 +136,33 @@
         		str+=value;
         	});
         	// alert("你的兴趣爱好是："+str);
-			mui.alert(str,'你的兴趣爱好是：','',null);
-        })
+			// mui.alert(str,'你的兴趣爱好是：','',null);
+			mui.toast('你的兴趣爱好是：'+str,{
+				duration:'long',
+				type:'div'
+			})
+        });
+		var info=document.getElementById('info');
+		document.getElementById('confirmbtn').addEventListener('tap',function(){
+			var btnArray=['否','是'];
+			mui.confirm('MUI是否是一个好框架','Hello MUI',btnArray,function(e){
+				if(e.index==1) {
+					info.innerHTML="你刚确认MUI是一个好框架";
+				} else {
+					info.innerHTML="MUI不是一个好框架";
+				}
+			});
+		});
+		document.getElementById('promptbtn').addEventListener('tap',function(){
+			var btnArray=['取消','确认'];
+			mui.prompt('请输入你对MUI的评语：','性能好','Hello MUI',btnArray,function(e){
+				if(e.index==1) {
+					info.innerHTML="感谢你的评价！";
+				} else {
+					info.innerHTML="你取消了评价";
+				}
+			});
+		});
 		</script>
 	</body>
 </html>
