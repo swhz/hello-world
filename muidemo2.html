@@ -113,6 +113,28 @@
 				</div>
 			</div>
 		</div>
+		<div class="mui-content">
+			<h5 class="mui-content-padded">删除兴趣爱好</h5>
+			<div class="mui-card">
+				<form class="mui-input-group dinteresting">
+					<div class="mui-input-row mui-checkbox">
+						<label>运动</label>
+						<input type="checkbox" name="interest" value="运动">
+					</div>
+					<div class="mui-input-row mui-checkbox">
+						<label>上网</label>
+						<input type="checkbox" name="interest" value="上网">
+					</div>
+					<div class="mui-input-row mui-checkbox">
+						<label>读书</label>
+						<input type="checkbox" name="interest" value="读书">
+					</div>
+				</form>
+				<h5 class="mui-content-padded">
+					<button type="button" class="mui-btn mui-btn-primary" id="delete">选择</button>
+				</h5>
+			</div>
+		</div>
 		<script src="examples/hello-mui/js/mui.min.js"></script>
 		<script type="text/javascript">
 			mui.init({
@@ -157,12 +179,25 @@
 			var btnArray=['取消','确认'];
 			mui.prompt('请输入你对MUI的评语：','性能好','Hello MUI',btnArray,function(e){
 				if(e.index==1) {
-					info.innerHTML="感谢你的评价！";
+					info.innerHTML="你的评价是："+e.value;
 				} else {
 					info.innerHTML="你取消了评价";
 				}
 			});
 		});
+		document.getElementById('delete').addEventListener('tap',function(){
+			var btnArray=['否','是'];
+			mui.confirm('确定删除选择爱好吗？','删除爱好',btnArray,function(e){
+				if(e.index==1) {
+					var din=document.getElementsByClassName('dinteresting')[0];
+					mui('.dinteresting input').each(function(index){
+						if(this.checked){
+							din.removeChild(din.children[index]);
+						}
+					})
+				} 
+			})
+		})
 		</script>
 	</body>
 </html>
